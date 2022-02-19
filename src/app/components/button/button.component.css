@@ -1,0 +1,23 @@
+.btn {
+  display: inline-block;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 600;
+}
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}

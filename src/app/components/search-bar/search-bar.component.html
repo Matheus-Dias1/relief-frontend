@@ -1,0 +1,9 @@
+<form>
+  <input
+    type="text"
+    name="url"
+    [(ngModel)]="url"
+    placeholder="https://www.youtube.com/watch?v=Rt2mdokoHR8"
+  />
+  <PrimaryButton (onClick)="onSearch()" text="Play"></PrimaryButton>
+</form>

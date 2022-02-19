@@ -1,0 +1,18 @@
+/* :root {
+  --primary:#2274A5;
+  --dark:#131B23;
+  --light: #E9F1F7;
+  --background: #FDFDFD;
+} */
+
+header {
+  background-color: #131b23;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.header-title {
+  color: #e9f1f7;
+}
