@@ -3,6 +3,6 @@
   <SearchBar (onPlay)="onVideoSubmit($event)"></SearchBar>
 </header>
 <div class="container">
-  <History></History>
-  <VideoView [url]="url" [ngStyle]="{ flex: 1 }"></VideoView>
+  <History [ngStyle]="{ display: 'contents' }"></History>
+  <VideoView [url]="url" [ngStyle]="{ display: 'contents' }"></VideoView>
 </div>

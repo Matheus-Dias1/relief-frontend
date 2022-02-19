@@ -1,8 +1,9 @@
 .iframe-container {
   overflow: hidden;
-  /* 16:9 aspect ratio */
   padding-top: min(56.25%, 731px);
   max-width: 1300px;
+  width: 100%;
+  background-color: #000;
   position: relative;
 }
 
@@ -15,4 +16,13 @@
   width: 100%;
   max-width: 1300px;
   max-height: 731px;
+}
+
+.noVideoLoaded {
+  color: #e9f1f7;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -50px;
 }

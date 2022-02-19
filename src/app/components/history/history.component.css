@@ -1,4 +1,4 @@
 .container {
-  width: 100px;
-  background-color: red;
+  flex: 1;
+  margin-right: 2rem;
 }

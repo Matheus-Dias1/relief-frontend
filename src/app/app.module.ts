@@ -7,6 +7,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { FormsModule } from '@angular/forms';
 import { VideoViewComponent } from './components/video-view/video-view.component';
 import { HistoryComponent } from './components/history/history.component';
+import { LinksListComponent } from './links-list/links-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HistoryComponent } from './components/history/history.component';
     ButtonComponent,
     VideoViewComponent,
     HistoryComponent,
+    LinksListComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],

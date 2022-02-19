@@ -1,5 +1,5 @@
 /* :root {
-  --primary:#2274A5;
+  --primary:#A100C9;
   --dark:#131B23;
   --light: #E9F1F7;
   --background: #FDFDFD;
@@ -22,6 +22,5 @@ header {
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
-  margin: 20px 40px 0 40px;
-  background-color: antiquewhite;
+  margin: 2rem 3rem 0 3rem;
 }
