@@ -1,9 +1,9 @@
 .iframe-container {
   overflow: hidden;
   /* 16:9 aspect ratio */
-  padding-top: 56.25%;
+  padding-top: min(56.25%, 731px);
+  max-width: 1300px;
   position: relative;
-  width: 500px;
 }
 
 .iframe-container iframe {
@@ -13,4 +13,6 @@
   position: absolute;
   top: 0;
   width: 100%;
+  max-width: 1300px;
+  max-height: 731px;
 }

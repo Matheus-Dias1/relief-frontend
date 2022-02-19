@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  url: string = '';
+  url: string = 'https://www.youtube.com/watch?v=Rt2mdokoHR8';
 
   onVideoSubmit(event: string) {
     this.url = event;
