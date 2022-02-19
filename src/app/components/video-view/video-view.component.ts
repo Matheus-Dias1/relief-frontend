@@ -31,6 +31,5 @@ export class VideoViewComponent implements OnInit, OnChanges {
     this.isUrlValid = isUrlValid;
     if (isUrlValid)
       this.validUrl = this.sanitizer.bypassSecurityTrustResourceUrl(validUrl);
-    console.log(this.validUrl);
   }
 }

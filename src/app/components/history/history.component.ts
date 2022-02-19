@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import LINKS, { Links } from 'src/app/mock/links';
 
 @Component({
   selector: 'History',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent implements OnInit {
+  links: Links[] = LINKS;
   constructor() {}
 
   ngOnInit(): void {}
