@@ -2,3 +2,7 @@
   <h1 class="header-title">Video Player</h1>
   <SearchBar (onPlay)="onVideoSubmit($event)"></SearchBar>
 </header>
+<div class="container">
+  <History></History>
+  <VideoView [url]="url"></VideoView>
+</div>

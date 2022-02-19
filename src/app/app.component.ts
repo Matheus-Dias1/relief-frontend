@@ -10,6 +10,5 @@ export class AppComponent {
 
   onVideoSubmit(event: string) {
     this.url = event;
-    alert(event);
   }
 }

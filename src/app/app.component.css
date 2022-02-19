@@ -16,3 +16,10 @@ header {
 .header-title {
   color: #e9f1f7;
 }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 40px 0 40px;
+  background-color: blue;
+}
