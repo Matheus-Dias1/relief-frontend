@@ -5,6 +5,7 @@ ul {
 
 li {
   list-style: none;
+  max-width: 450px;
 }
 
 .linkCard {
@@ -16,7 +17,6 @@ li {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 450px;
 }
 
 .linkCard:hover {

@@ -1,0 +1,7 @@
+<div>
+  <h2>Bookmarks</h2>
+  <app-links-list
+    [links]="bookmarks"
+    (LinkClick)="onLinkClick($event)"
+  ></app-links-list>
+</div>

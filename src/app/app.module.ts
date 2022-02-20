@@ -9,7 +9,8 @@ import { HistoryComponent } from './components/history/history.component';
 import { LinksListComponent } from './components/links-list/links-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,8 +18,15 @@ import { MatButtonModule } from '@angular/material/button';
     VideoViewComponent,
     HistoryComponent,
     LinksListComponent,
+    BookmarksComponent,
   ],
-  imports: [BrowserModule, FormsModule, NoopAnimationsModule, MatButtonModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatBadgeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

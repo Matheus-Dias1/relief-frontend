@@ -5,12 +5,27 @@
 <div class="container">
   <History
     [ngStyle]="{ display: 'contents' }"
+    *ngIf="!showBookmarks"
     [history]="history"
     (linkClick)="linkClickHandler($event)"
   ></History>
+  <Bookmarks
+    [ngStyle]="{ display: 'contents' }"
+    *ngIf="showBookmarks"
+    [bookmarks]="bookmarks"
+    (linkClick)="linkClickHandler($event)"
+  ></Bookmarks>
   <VideoView [url]="url" [ngStyle]="{ display: 'contents' }"></VideoView>
 </div>
 <div class="container actions">
-  <button mat-raised-button color="primary">toggle bookmarks</button>
+  <button
+    mat-raised-button
+    color="primary"
+    matBadge="{{ !showBookmarks ? bookmarks.length : '' }}"
+    matBadgeColor="warn"
+    (click)="toggleBookmarks()"
+  >
+    {{ showBookmarks ? 'show history' : 'show bookmarks' }}
+  </button>
   <button mat-raised-button color="primary">add bookmark</button>
 </div>

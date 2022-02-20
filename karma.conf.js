@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/releif-frontend'),
+      dir: require('path').join(__dirname, './coverage/relief-frontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },
