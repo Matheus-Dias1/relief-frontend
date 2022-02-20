@@ -1,4 +1,7 @@
 <div>
   <h2>History</h2>
-  <app-links-list [links]="links"></app-links-list>
+  <app-links-list
+    [links]="history"
+    (LinkClick)="onLinkClick($event)"
+  ></app-links-list>
 </div>

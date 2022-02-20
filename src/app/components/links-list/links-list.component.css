@@ -10,8 +10,13 @@ li {
 .linkCard {
   background-color: #e9f1f7;
   border-radius: 1rem;
-  margin-bottom: 0.8rem;
+  margin: 1rem;
   padding: 0.5rem 1rem;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 450px;
 }
 
 .linkCard:hover {

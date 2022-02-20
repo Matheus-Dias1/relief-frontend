@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import LINKS, { Links } from 'src/app/mock/links';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Link } from 'src/app/links';
+import LINKS from 'src/app/mock/links';
 
 @Component({
   selector: 'History',
@@ -7,8 +8,13 @@ import LINKS, { Links } from 'src/app/mock/links';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent implements OnInit {
-  links: Links[] = LINKS;
+  @Output() linkClick = new EventEmitter();
+  @Input() history!: Link[];
+
   constructor() {}
 
   ngOnInit(): void {}
+  onLinkClick(link: Link) {
+    this.linkClick.emit(link);
+  }
 }

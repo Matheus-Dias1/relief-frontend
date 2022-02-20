@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Link } from './links';
+import LINKS from './mock/links';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   url: string = '';
-  bookmarks: string[] = [];
-  history: string[] = [];
+  bookmarks: Link[] = [];
+  history: Link[] = LINKS;
 
   onVideoSubmit(event: string) {
     this.url = event;
+  }
+
+  linkClickHandler(link: Link) {
+    this.onVideoSubmit(link.url);
   }
 }

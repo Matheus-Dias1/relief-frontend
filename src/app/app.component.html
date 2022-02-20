@@ -3,7 +3,11 @@
   <SearchBar (onPlay)="onVideoSubmit($event)"></SearchBar>
 </header>
 <div class="container">
-  <History [ngStyle]="{ display: 'contents' }"></History>
+  <History
+    [ngStyle]="{ display: 'contents' }"
+    [history]="history"
+    (linkClick)="linkClickHandler($event)"
+  ></History>
   <VideoView [url]="url" [ngStyle]="{ display: 'contents' }"></VideoView>
 </div>
 <div class="container actions">
