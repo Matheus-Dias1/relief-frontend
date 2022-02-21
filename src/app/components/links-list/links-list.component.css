@@ -9,7 +9,8 @@ li {
 }
 
 .linkCard {
-  background-color: #e9f1f7;
+  background-color: #18181b;
+  color: #fff;
   border-radius: 1rem;
   margin: 1rem;
   padding: 0.5rem 1rem;
@@ -19,9 +20,29 @@ li {
   white-space: nowrap;
 }
 
+.linkCard p {
+  opacity: 0.5;
+}
+
+.linkCard h3 {
+  font-weight: 600;
+}
+
 .linkCard:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
   cursor: pointer;
+  transition: transform 0.1s ease-out;
   white-space: normal;
-  transition: height 0.25s ease-in;
+}
+
+@keyframes slide-up-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

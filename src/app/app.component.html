@@ -21,11 +21,18 @@
   <button
     mat-raised-button
     color="primary"
+    (click)="addToBookmarks()"
+    [disabled]="isBookmarked() || !video.embed_url"
+  >
+    {{ isBookmarked() ? 'video bookmarked' : 'add to bookmarks' }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
     matBadge="{{ !showBookmarks ? bookmarks.length : '' }}"
     matBadgeColor="warn"
     (click)="toggleBookmarks()"
   >
     {{ showBookmarks ? 'show history' : 'show bookmarks' }}
   </button>
-  <button mat-raised-button color="primary">add bookmark</button>
 </div>
