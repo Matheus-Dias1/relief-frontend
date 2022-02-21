@@ -22,4 +22,6 @@ li {
 .linkCard:hover {
   transform: scale(1.02);
   cursor: pointer;
+  white-space: normal;
+  transition: height 0.25s ease-in;
 }

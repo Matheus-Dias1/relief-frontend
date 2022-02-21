@@ -7,7 +7,7 @@ import { Link } from 'src/app/links';
   styleUrls: ['./bookmarks.component.css'],
 })
 export class BookmarksComponent implements OnInit {
-  @Output() linkClick = new EventEmitter();
+  @Output() linkClick: EventEmitter<Link> = new EventEmitter();
   @Input() bookmarks!: Link[];
 
   constructor() {}

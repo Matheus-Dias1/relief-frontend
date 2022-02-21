@@ -24,7 +24,6 @@ export class VideoViewComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
     const { video } = changes;
-    console.log(changes);
     this.validUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       video.currentValue.embed_url
     );

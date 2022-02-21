@@ -16,8 +16,10 @@ export class AppComponent implements OnInit {
   constructor(private historyService: HistoryService) {}
 
   onVideoSubmit(link: Link) {
-    console.log(link);
     this.video = link;
+    this.historyService
+      .addToHistory(link)
+      .subscribe((link) => this.history.unshift(link));
     // sendToHistory
   }
 
@@ -30,7 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.historyService.getTasks().subscribe((history) => {
+    this.historyService.getHistory().subscribe((history) => {
       this.history = history;
     });
   }

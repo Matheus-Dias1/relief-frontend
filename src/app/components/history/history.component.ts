@@ -8,7 +8,7 @@ import LINKS from 'src/app/mock/links';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent implements OnInit {
-  @Output() linkClick = new EventEmitter();
+  @Output() linkClick: EventEmitter<Link> = new EventEmitter();
   @Input() history!: Link[];
 
   constructor() {}

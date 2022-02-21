@@ -8,7 +8,7 @@ import { Link } from '../../links';
 })
 export class LinksListComponent implements OnInit {
   @Input() links: Link[] = [];
-  @Output() LinkClick = new EventEmitter();
+  @Output() LinkClick: EventEmitter<Link> = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
