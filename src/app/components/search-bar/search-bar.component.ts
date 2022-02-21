@@ -24,6 +24,8 @@ export class SearchBarComponent implements OnInit {
           title: title,
         };
         this.onPlay.emit(link);
+      } else {
+        alert('Invalid url, only youtube links are supported');
       }
     }
   }

@@ -21,10 +21,9 @@ export class AppComponent implements OnInit {
 
   onVideoSubmit(link: Link) {
     this.video = link;
-    this.historyService
-      .addToHistory(link)
-      .subscribe((link) => this.history.unshift(link));
-    // sendToHistory
+    this.historyService.addToHistory(link).subscribe((link) => {
+      this.history.unshift(link);
+    });
   }
 
   linkClickHandler(link: Link) {
@@ -36,9 +35,18 @@ export class AppComponent implements OnInit {
   }
 
   addToBookmarks() {
-    this.bookmarkService
-      .addToBookmarks(this.video)
-      .subscribe((link) => this.bookmarks.unshift(link));
+    // when already bookmarked, removes bookmark
+    if (this.isBookmarked()) {
+      this.bookmarkService.removeBookmark(this.video).subscribe(() => {
+        this.bookmarks = this.bookmarks.filter(
+          (bookmark) => bookmark.id !== this.video.id
+        );
+      });
+    } else {
+      this.bookmarkService
+        .addToBookmarks(this.video)
+        .subscribe((link) => this.bookmarks.unshift(link));
+    }
   }
 
   isBookmarked() {

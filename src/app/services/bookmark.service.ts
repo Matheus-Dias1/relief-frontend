@@ -8,6 +8,10 @@ const httpOptions = {
     'Content-Type': 'application/json',
   }),
 };
+
+interface resInterface {
+  id: string;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -22,5 +26,9 @@ export class BookmarkService {
 
   addToBookmarks(link: Link): Observable<Link> {
     return this.http.post<Link>(this.apiUrl, link, httpOptions);
+  }
+
+  removeBookmark(link: Link): Observable<{}> {
+    return this.http.delete<{}>(`${this.apiUrl}/${link.id}/`, httpOptions);
   }
 }

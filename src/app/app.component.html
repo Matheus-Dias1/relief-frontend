@@ -20,12 +20,13 @@
 <div class="container actions">
   <button
     mat-raised-button
-    color="primary"
+    color="{{ isBookmarked() ? 'warn' : 'primary' }}"
     (click)="addToBookmarks()"
-    [disabled]="isBookmarked() || !video.embed_url"
+    [disabled]="!video.embed_url"
   >
-    {{ isBookmarked() ? 'video bookmarked' : 'add to bookmarks' }}
+    {{ isBookmarked() ? 'remove bookmark' : 'add to bookmarks' }}
   </button>
+
   <button
     mat-raised-button
     color="primary"
