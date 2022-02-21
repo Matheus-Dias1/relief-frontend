@@ -6,7 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import parseYoutube from 'src/app/helpers/parseYoutube';
+import { Link } from 'src/app/links';
 
 @Component({
   selector: 'VideoView',
@@ -14,9 +14,8 @@ import parseYoutube from 'src/app/helpers/parseYoutube';
   styleUrls: ['./video-view.component.css'],
 })
 export class VideoViewComponent implements OnInit, OnChanges {
-  @Input() url: string = '';
+  @Input() video: Link = { url: '', embed_url: '', title: '' };
   validUrl: SafeUrl;
-  isUrlValid: boolean = false;
 
   constructor(private sanitizer: DomSanitizer) {
     this.validUrl = sanitizer.bypassSecurityTrustUrl('');
@@ -24,12 +23,10 @@ export class VideoViewComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
-    const { url } = changes;
-    const { parsedUrl: validUrl, valid: isUrlValid } = parseYoutube(
-      url.currentValue
+    const { video } = changes;
+    console.log(changes);
+    this.validUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      video.currentValue.embed_url
     );
-    this.isUrlValid = isUrlValid;
-    if (isUrlValid)
-      this.validUrl = this.sanitizer.bypassSecurityTrustResourceUrl(validUrl);
   }
 }

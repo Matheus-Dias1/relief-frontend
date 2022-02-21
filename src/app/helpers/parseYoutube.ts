@@ -1,4 +1,6 @@
-const parseYoutube = (url: string): { valid: boolean; parsedUrl: string } => {
+const parseYoutube = (
+  url: string
+): { valid: boolean; parsedUrl: string; id: string } => {
   var regExp =
     /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
   var match = url.match(regExp);
@@ -6,6 +8,7 @@ const parseYoutube = (url: string): { valid: boolean; parsedUrl: string } => {
   return {
     valid: !!valid,
     parsedUrl: !!match ? `https://www.youtube.com/embed/${match[7]}` : '',
+    id: !!match ? match[7] : '',
   };
 };
 

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import parseYoutube from 'src/app/helpers/parseYoutube';
+import { Link } from 'src/app/links';
 @Component({
   selector: 'SearchBar',
   templateUrl: './search-bar.component.html',
@@ -14,7 +16,15 @@ export class SearchBarComponent implements OnInit {
 
   onSearch() {
     if (!!this.url) {
-      this.onPlay.emit(this.url);
+      const { valid, parsedUrl, id } = parseYoutube(this.url);
+      if (valid) {
+        const link: Link = {
+          url: this.url,
+          embed_url: parsedUrl,
+          title: 'PLACEHOLDER TITLE',
+        };
+        this.onPlay.emit(link);
+      }
     }
   }
 }
