@@ -26,3 +26,9 @@
   top: 50%;
   margin-top: -50px;
 }
+
+@media (max-width: 900px) {
+  .iframe-container {
+    margin-bottom: 2rem;
+  }
+}

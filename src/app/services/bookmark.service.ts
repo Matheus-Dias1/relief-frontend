@@ -29,6 +29,6 @@ export class BookmarkService {
   }
 
   removeBookmark(link: Link): Observable<{}> {
-    return this.http.delete<{}>(`${this.apiUrl}/${link.id}/`, httpOptions);
+    return this.http.delete<{}>(`${this.apiUrl}${link.id}/`, httpOptions);
   }
 }

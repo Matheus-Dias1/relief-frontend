@@ -1,6 +1,9 @@
 <header>
   <h1 class="header-title">Video Player</h1>
-  <SearchBar (onPlay)="onVideoSubmit($event)"></SearchBar>
+  <SearchBar
+    [ngStyle]="{ display: 'contents' }"
+    (onPlay)="onVideoSubmit($event)"
+  ></SearchBar>
 </header>
 <div class="container">
   <History
