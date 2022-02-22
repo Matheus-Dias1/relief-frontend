@@ -1,7 +1,8 @@
 # ReliefFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+This is the frontend for the Video Player application test
 
-## Development server
+## How to run
 
-Run `npm start` or `ng serve --proxy-config proxy.conf.json` for a dev server. Navigate to `http://localhost:4200/`.
+Run `npm start` or `ng serve --proxy-config proxy.conf.json`.
+Navigate to `http://localhost:4200/`.
