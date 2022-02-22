@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     this.video = link;
     this.historyService.addToHistory(link).subscribe((link) => {
       this.history.unshift(link);
+      this.video = link;
     });
   }
 
@@ -57,10 +58,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.historyService.getHistory().subscribe((history) => {
-      this.history = history;
+      this.history = history.reverse();
     });
     this.bookmarkService.getBookmarks().subscribe((bookmarks) => {
-      this.bookmarks = bookmarks;
+      this.bookmarks = bookmarks.reverse();
     });
   }
 }
