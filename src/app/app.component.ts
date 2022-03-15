@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   video: Link = { url: '', embed_url: '', title: '' };
   history: Link[] = [];
   bookmarks: Link[] = [];
-  showBookmarks: boolean = false;
+  showBookmarks = false;
 
   constructor(
     private historyService: HistoryService,
