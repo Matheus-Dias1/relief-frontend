@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Link } from 'src/app/links';
-import LINKS from 'src/app/mock/links';
+import { VideoService } from 'src/app/services/video.service';
 
 @Component({
   selector: 'History',
@@ -8,13 +8,12 @@ import LINKS from 'src/app/mock/links';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent implements OnInit {
-  @Output() linkClick: EventEmitter<Link> = new EventEmitter();
   @Input() history!: Link[];
 
-  constructor() {}
+  constructor(private videoService: VideoService) {}
 
   ngOnInit(): void {}
   onLinkClick(link: Link) {
-    this.linkClick.emit(link);
+    this.videoService.setVideo(link);
   }
 }

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Link } from './links';
 import { BookmarkService } from './services/bookmark.service';
 import { HistoryService } from './services/history.service';
+import { VideoService } from './services/video.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers: [HistoryService],
 })
 export class AppComponent implements OnInit {
   video: Link = { url: '', embed_url: '', title: '' };
@@ -16,20 +18,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private historyService: HistoryService,
+    private videoService: VideoService,
     private bookmarkService: BookmarkService
   ) {}
-
-  onVideoSubmit(link: Link) {
-    this.video = link;
-    this.historyService.addToHistory(link).subscribe((link) => {
-      this.history.unshift(link);
-      this.video = link;
-    });
-  }
-
-  linkClickHandler(link: Link) {
-    this.video = link;
-  }
 
   toggleBookmarks() {
     this.showBookmarks = !this.showBookmarks;
@@ -57,8 +48,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.historyService.getHistory().subscribe((history) => {
-      this.history = history.reverse();
+    this.videoService.subscribe((video) => {
+      this.video = video;
+    });
+    this.historyService.subscribe((history) => {
+      this.history = history;
     });
     this.bookmarkService.getBookmarks().subscribe((bookmarks) => {
       this.bookmarks = bookmarks.reverse();

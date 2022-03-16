@@ -1,26 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Link } from '../links';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { ApiService } from './api.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
-};
 @Injectable({
   providedIn: 'root',
 })
 export class HistoryService {
-  private apiUrl = '/api/history/';
+  protected subject = new BehaviorSubject<Link[]>([]);
+  protected model: Link[] = [];
 
-  constructor(private http: HttpClient) {}
-
-  getHistory(): Observable<Link[]> {
-    return this.http.get<Link[]>(this.apiUrl);
+  constructor(private api: ApiService) {
+    this.api.fetchHistory().subscribe((history) => {
+      this.model = history.reverse();
+      this.subject.next(this.model);
+    });
   }
 
-  addToHistory(link: Link): Observable<Link> {
-    return this.http.post<Link>(this.apiUrl, link, httpOptions);
+  public subscribe(callback: (model: Link[]) => void): Subscription {
+    return this.subject.subscribe(callback);
+  }
+
+  public addToHistory(link: Link): void {
+    this.model.unshift(link);
+    this.subject.next(this.model);
+    this.api.addToHistory(link);
   }
 }

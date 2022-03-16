@@ -1,16 +1,20 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import parseYoutube from 'src/app/helpers/parseYoutube';
 import { Link } from 'src/app/links';
+import { HistoryService } from 'src/app/services/history.service';
+import { VideoService } from 'src/app/services/video.service';
 @Component({
   selector: 'SearchBar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent implements OnInit {
-  @Output() onPlay: EventEmitter<Link> = new EventEmitter();
   url: string = '';
 
-  constructor() {}
+  constructor(
+    private historyService: HistoryService,
+    private videoService: VideoService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -23,7 +27,8 @@ export class SearchBarComponent implements OnInit {
           embed_url: parsedUrl,
           title: title,
         };
-        this.onPlay.emit(link);
+        this.videoService.setVideo(link);
+        this.historyService.addToHistory(link);
       } else {
         alert('Invalid url, only youtube links are supported');
       }

@@ -1,22 +1,17 @@
 <header>
   <h1 class="header-title">Video Player</h1>
-  <SearchBar
-    [ngStyle]="{ display: 'contents' }"
-    (onPlay)="onVideoSubmit($event)"
-  ></SearchBar>
+  <SearchBar [ngStyle]="{ display: 'contents' }"></SearchBar>
 </header>
 <div class="container">
   <History
     [ngStyle]="{ display: 'contents' }"
     *ngIf="!showBookmarks"
     [history]="history"
-    (linkClick)="linkClickHandler($event)"
   ></History>
   <Bookmarks
     [ngStyle]="{ display: 'contents' }"
     *ngIf="showBookmarks"
     [bookmarks]="bookmarks"
-    (linkClick)="linkClickHandler($event)"
   ></Bookmarks>
   <VideoView [video]="video" [ngStyle]="{ display: 'contents' }"></VideoView>
 </div>
