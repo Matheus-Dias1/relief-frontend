@@ -20,13 +20,9 @@ export class SearchBarComponent implements OnInit {
 
   async onSearch() {
     if (!!this.url) {
-      const { valid, parsedUrl, title } = await parseYoutube(this.url);
+      const { valid, id, title } = await parseYoutube(this.url);
       if (valid) {
-        const link: Link = {
-          url: this.url,
-          embed_url: parsedUrl,
-          title: title,
-        };
+        const link: Link = { id, title };
         this.videoService.setVideo(link);
         this.historyService.addToHistory(link);
       } else {

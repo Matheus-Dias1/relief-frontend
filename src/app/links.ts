@@ -1,6 +1,9 @@
 export interface Link {
-  id?: string;
-  url: string;
-  embed_url: string;
+  id: string;
   title: string;
 }
+
+export type HttpLinkResponse = {
+  videoID: string;
+  title: string;
+};

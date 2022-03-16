@@ -1,7 +1,7 @@
 <div class="iframe-container">
-  <p class="noVideoLoaded" *ngIf="!video.url">No video loaded</p>
+  <p class="noVideoLoaded" *ngIf="!video.id">No video loaded</p>
   <iframe
-    *ngIf="!!video.url"
+    *ngIf="!!video.id"
     [src]="validUrl"
     class="responsive-iframe"
     title="YouTube video player"

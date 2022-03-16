@@ -14,7 +14,7 @@ import { Link } from 'src/app/links';
   styleUrls: ['./video-view.component.css'],
 })
 export class VideoViewComponent implements OnInit, OnChanges {
-  @Input() video: Link = { url: '', embed_url: '', title: '' };
+  @Input() video: Link = { id: '', title: '' };
   validUrl: SafeUrl;
 
   constructor(private sanitizer: DomSanitizer) {
@@ -25,7 +25,7 @@ export class VideoViewComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const { video } = changes;
     this.validUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      video.currentValue.embed_url
+      `https://www.youtube.com/embed/${video.currentValue.id}`
     );
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from './links';
-import { BookmarkService } from './services/bookmark.service';
+import { ApiService } from './services/api.service';
 import { HistoryService } from './services/history.service';
 import { VideoService } from './services/video.service';
 
@@ -11,15 +11,15 @@ import { VideoService } from './services/video.service';
   providers: [HistoryService],
 })
 export class AppComponent implements OnInit {
-  video: Link = { url: '', embed_url: '', title: '' };
+  video: Link = { id: '', title: '' };
   history: Link[] = [];
   bookmarks: Link[] = [];
   showBookmarks = false;
 
   constructor(
     private historyService: HistoryService,
-    private videoService: VideoService,
-    private bookmarkService: BookmarkService
+    private apiService: ApiService,
+    private videoService: VideoService
   ) {}
 
   toggleBookmarks() {
@@ -29,22 +29,19 @@ export class AppComponent implements OnInit {
   addToBookmarks() {
     // when already bookmarked, removes bookmark
     if (this.isBookmarked()) {
-      this.bookmarkService.removeBookmark(this.video).subscribe(() => {
-        this.bookmarks = this.bookmarks.filter(
-          (bookmark) => bookmark.id !== this.video.id
-        );
+      this.apiService.toggleBookmark(this.video);
+      this.bookmarks = this.bookmarks.filter((bookmark) => {
+        console.log('bid', bookmark.id, '\nvid', this.video.id);
+        return bookmark.id !== this.video.id;
       });
     } else {
-      this.bookmarkService
-        .addToBookmarks(this.video)
-        .subscribe((link) => this.bookmarks.unshift(link));
+      this.apiService.toggleBookmark(this.video);
+      this.bookmarks.unshift(this.video);
     }
   }
 
   isBookmarked() {
-    return this.bookmarks.some(
-      (bookmark) => bookmark.embed_url === this.video.embed_url
-    );
+    return this.bookmarks.some((bookmark) => bookmark.id === this.video.id);
   }
 
   ngOnInit(): void {
@@ -54,8 +51,12 @@ export class AppComponent implements OnInit {
     this.historyService.subscribe((history) => {
       this.history = history;
     });
-    this.bookmarkService.getBookmarks().subscribe((bookmarks) => {
-      this.bookmarks = bookmarks.reverse();
+    this.apiService.fetchBookmarks().subscribe((bookmarks) => {
+      const linkArr = bookmarks.map((link) => ({
+        id: link.videoID,
+        title: link.title,
+      }));
+      this.bookmarks = linkArr;
     });
   }
 }

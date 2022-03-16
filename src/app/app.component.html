@@ -20,7 +20,7 @@
     mat-raised-button
     color="{{ isBookmarked() ? 'warn' : 'primary' }}"
     (click)="addToBookmarks()"
-    [disabled]="!video.embed_url"
+    [disabled]="!video.id"
   >
     {{ isBookmarked() ? 'remove bookmark' : 'add to bookmarks' }}
   </button>

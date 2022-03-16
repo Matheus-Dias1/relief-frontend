@@ -10,14 +10,14 @@ const getYoutubeTitle = async (id: string): Promise<string> => {
 
 const parseYoutube = async (
   url: string
-): Promise<{ valid: boolean; parsedUrl: string; title: string }> => {
+): Promise<{ valid: boolean; id: string; title: string }> => {
   var regExp =
     /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
   var match = url.match(regExp);
   const valid = match && match[7].length == 11;
   return {
     valid: !!valid,
-    parsedUrl: match ? `https://www.youtube.com/embed/${match[7]}` : '',
+    id: match ? match[7] : '',
     title: match ? await getYoutubeTitle(match[7]) : '',
   };
 };

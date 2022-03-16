@@ -8,9 +8,7 @@ import { Link } from '../links';
 export class VideoService {
   protected video = new BehaviorSubject<Link>({
     id: '',
-    embed_url: '',
     title: '',
-    url: '',
   });
   constructor() {}
 

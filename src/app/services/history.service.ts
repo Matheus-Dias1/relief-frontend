@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Link } from '../links';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -12,7 +12,10 @@ export class HistoryService {
 
   constructor(private api: ApiService) {
     this.api.fetchHistory().subscribe((history) => {
-      this.model = history.reverse();
+      this.model = history.map((video) => ({
+        id: video.videoID,
+        title: video.title,
+      }));
       this.subject.next(this.model);
     });
   }

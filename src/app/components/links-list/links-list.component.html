@@ -2,7 +2,7 @@
   <li *ngFor="let link of links">
     <div class="linkCard" (click)="onLinkClick(link)">
       <h3>{{ link.title }}</h3>
-      <p>{{ link.url }}</p>
+      <p>https://www.youtube.com/watch?v={{ link.id }}</p>
     </div>
   </li>
 </ul>
