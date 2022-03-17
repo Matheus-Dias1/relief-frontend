@@ -1,8 +1,8 @@
-import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { HttpLinkResponse, Link } from '../links';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ContentChild, Injectable } from '@angular/core';
+import { HttpLinkPayload, Link } from '../links';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, timeout } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,32 +10,35 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  fetchHistory(): Observable<HttpLinkResponse[]> {
-    return this.http.get<HttpLinkResponse[]>(`${environment.apiUrl}/history/`);
+  fetchHistory(): Observable<HttpResponse<HttpLinkPayload[]>> {
+    return this.http.get<HttpLinkPayload[]>(`${environment.apiUrl}/history/`, {
+      observe: 'response',
+    });
   }
 
-  fetchBookmarks(): Observable<HttpLinkResponse[]> {
-    return this.http.get<HttpLinkResponse[]>(
-      `${environment.apiUrl}/bookmarks/`
-    );
+  fetchBookmarks(): Observable<HttpLinkPayload[]> {
+    return this.http.get<HttpLinkPayload[]>(`${environment.apiUrl}/bookmarks/`);
   }
 
-  toggleBookmark(link: Link): void {
-    this.http.put(`${environment.apiUrl}/bookmarks/${link.id}`, {});
+  toggleBookmark(links: Link[]): void {
+    const ids = links.map((link) => link.id);
+    this.http.put(`${environment.apiUrl}/bookmarks/`, ids);
   }
 
-  addToHistory(link: Link): Observable<HttpLinkResponse> {
+  addToHistory(links: Link[]): Observable<HttpResponse<string>> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
+      observe: 'response' as const,
+      responseType: 'text' as const,
     };
-    const payload = {
+    const payload: HttpLinkPayload[] = links.map((link) => ({
       videoID: link.id,
       title: link.title,
-    };
-    return this.http.post<HttpLinkResponse>(
-      environment.apiUrl,
+    }));
+    return this.http.post(
+      `${environment.apiUrl}/history/`,
       payload,
       httpOptions
     );

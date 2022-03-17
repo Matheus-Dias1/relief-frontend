@@ -3,7 +3,7 @@ export interface Link {
   title: string;
 }
 
-export type HttpLinkResponse = {
+export type HttpLinkPayload = {
   videoID: string;
   title: string;
 };

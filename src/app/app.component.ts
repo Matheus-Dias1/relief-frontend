@@ -29,13 +29,13 @@ export class AppComponent implements OnInit {
   addToBookmarks() {
     // when already bookmarked, removes bookmark
     if (this.isBookmarked()) {
-      this.apiService.toggleBookmark(this.video);
+      this.apiService.toggleBookmark([this.video]);
       this.bookmarks = this.bookmarks.filter((bookmark) => {
         console.log('bid', bookmark.id, '\nvid', this.video.id);
         return bookmark.id !== this.video.id;
       });
     } else {
-      this.apiService.toggleBookmark(this.video);
+      this.apiService.toggleBookmark([this.video]);
       this.bookmarks.unshift(this.video);
     }
   }
