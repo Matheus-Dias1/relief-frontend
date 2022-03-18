@@ -53,6 +53,7 @@ export class LocalStorageService {
    */
   clearUnpropagated(target: 'history' | 'bookmarks') {
     const mappedTarget = target === 'history' ? 'uHistory' : 'uBookmarks';
+    this[mappedTarget] = [];
     this.storage.setItem(mappedTarget, '[]');
   }
 

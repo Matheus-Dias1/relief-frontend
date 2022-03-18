@@ -20,9 +20,11 @@ export class ApiService {
     return this.http.get<HttpLinkPayload[]>(`${environment.apiUrl}/bookmarks/`);
   }
 
-  toggleBookmark(links: Link[]): void {
+  toggleBookmark(links: Link[]): Observable<string> {
     const ids = links.map((link) => link.id);
-    this.http.put(`${environment.apiUrl}/bookmarks/`, ids);
+    return this.http.put(`${environment.apiUrl}/bookmarks/`, ids, {
+      responseType: 'text',
+    });
   }
 
   addToHistory(links: Link[]): Observable<HttpResponse<string>> {

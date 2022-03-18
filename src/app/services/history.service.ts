@@ -35,7 +35,7 @@ export class HistoryService {
           }
 
           const unpropagated = this.localStorage.getUnpropagated('history');
-          if (unpropagated)
+          if (unpropagated.length)
             this.api.addToHistory(unpropagated).subscribe((resp) => {
               if (resp.ok) this.localStorage.clearUnpropagated('history');
             });
